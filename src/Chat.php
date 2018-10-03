@@ -97,7 +97,7 @@ class Chat
      */
     public static function userModel()
     {
-        return config('Yizen_chat.user_model');
+        return config('chat.user_model');
     }
 
     /**
@@ -107,6 +107,6 @@ class Chat
      */
     public static function broadcasts()
     {
-        return config('Yizen_chat.broadcasts');
+        return config('chat.broadcasts');
     }
 }
