@@ -1,8 +1,3 @@
-<p align="left"><img src="menu.png" alt="chat" width="330px"></p>
-
-[![Build Status](https://travis-ci.org/Yizen/chat.svg?branch=master)](https://travis-ci.org/Yizen/chat)
-[![Downloads](https://img.shields.io/packagist/dt/Yizen/chat.svg)](https://packagist.org/packages/Yizen/chat)
-[![Packagist](https://img.shields.io/packagist/v/Yizen/chat.svg)](https://packagist.org/packages/Yizen/chat)
 ## Chat
 
 - [Introduction](#introduction)
@@ -75,7 +70,7 @@ This will publish database migrations and a configuration file `Yizen_chat.php` 
     /**
      * This will allow you to broadcast an event when a message is sent
      * Example:
-     * Channel: private-mc-chat-conversation.2,
+     * Channel: chat-conversation.2,
      * Event: Yizen\Chat\Messages\MessageWasSent
      */
     'broadcasts'            => false,
