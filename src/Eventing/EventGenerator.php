@@ -1,6 +1,6 @@
 <?php
 
-namespace Musonza\Chat\Eventing;
+namespace Yizen\Chat\Eventing;
 
 trait EventGenerator
 {

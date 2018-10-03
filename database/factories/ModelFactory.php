@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use Musonza\Chat\User;
+use Yizen\Chat\User;
 
 /*
 |--------------------------------------------------------------------------

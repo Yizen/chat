@@ -1,12 +1,12 @@
 <?php
 
-namespace Musonza\Chat\Models;
+namespace Yizen\Chat\Models;
 
-use Musonza\Chat\BaseModel;
-use Musonza\Chat\Chat;
-use Musonza\Chat\Models\Message;
+use Yizen\Chat\BaseModel;
+use Yizen\Chat\Chat;
+use Yizen\Chat\Models\Message;
 use Illuminate\Support\Facades\Notification;
-use Musonza\Chat\Models\Conversation;
+use Yizen\Chat\Models\Conversation;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MessageNotification extends BaseModel
@@ -14,7 +14,7 @@ class MessageNotification extends BaseModel
     use SoftDeletes;
 
     protected $fillable = ['user_id', 'message_id', 'conversation_id'];
-    protected $table = 'mc_message_notification';
+    protected $table = 'message_notification';
     protected $dates = ['deleted_at'];
 
     /**

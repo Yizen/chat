@@ -13,14 +13,14 @@ class CreateChatTables extends Migration
      */
     public function up()
     {
-        Schema::create('mc_conversations', function (Blueprint $table) {
+        Schema::create('conversations', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('private')->default(true);
             $table->text('data')->nullable();
             $table->timestamps();
         });
 
-        Schema::create('mc_messages', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
             $table->text('body');
             $table->integer('conversation_id')->unsigned();
@@ -34,17 +34,17 @@ class CreateChatTables extends Migration
 
             $table->foreign('conversation_id')
                 ->references('id')
-                ->on('mc_conversations');
+                ->on('conversations');
         });
 
-        Schema::create('mc_conversation_user', function (Blueprint $table) {
+        Schema::create('conversation_user', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
             $table->integer('conversation_id')->unsigned();
             $table->primary(['user_id', 'conversation_id']);
             $table->timestamps();
 
             $table->foreign('conversation_id')
-                ->references('id')->on('mc_conversations')
+                ->references('id')->on('conversations')
                 ->onDelete('cascade');
 
             $table->foreign('user_id')
@@ -52,7 +52,7 @@ class CreateChatTables extends Migration
                 ->onDelete('cascade');
         });
 
-        Schema::create('mc_message_notification', function (Blueprint $table) {
+        Schema::create('message_notification', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('message_id')->unsigned();
             $table->integer('conversation_id')->unsigned();
@@ -66,11 +66,11 @@ class CreateChatTables extends Migration
             $table->index(['user_id', 'message_id']);
 
             $table->foreign('message_id')
-                ->references('id')->on('mc_messages')
+                ->references('id')->on('messages')
                 ->onDelete('cascade');
 
             $table->foreign('conversation_id')
-                ->references('id')->on('mc_conversations')
+                ->references('id')->on('conversations')
                 ->onDelete('cascade');
 
             $table->foreign('user_id')
@@ -86,9 +86,9 @@ class CreateChatTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mc_conversations');
-        Schema::dropIfExists('mc_messages');
-        Schema::dropIfExists('mc_conversation_user');
-        Schema::dropIfExists('mc_message_notification');
+        Schema::dropIfExists('conversations');
+        Schema::dropIfExists('messages');
+        Schema::dropIfExists('conversation_user');
+        Schema::dropIfExists('message_notification');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Musonza\Chat\Notifications;
+namespace Yizen\Chat\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;

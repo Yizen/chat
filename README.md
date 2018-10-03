@@ -1,8 +1,8 @@
 <p align="left"><img src="menu.png" alt="chat" width="330px"></p>
 
-[![Build Status](https://travis-ci.org/musonza/chat.svg?branch=master)](https://travis-ci.org/musonza/chat)
-[![Downloads](https://img.shields.io/packagist/dt/musonza/chat.svg)](https://packagist.org/packages/musonza/chat)
-[![Packagist](https://img.shields.io/packagist/v/musonza/chat.svg)](https://packagist.org/packages/musonza/chat)
+[![Build Status](https://travis-ci.org/Yizen/chat.svg?branch=master)](https://travis-ci.org/Yizen/chat)
+[![Downloads](https://img.shields.io/packagist/dt/Yizen/chat.svg)](https://packagist.org/packages/Yizen/chat)
+[![Packagist](https://img.shields.io/packagist/v/Yizen/chat.svg)](https://packagist.org/packages/Yizen/chat)
 ## Chat
 
 - [Introduction](#introduction)
@@ -37,19 +37,19 @@ This package allows you to add a chat system to your Laravel ^5.4 application
 From the command line, run:
 
 ```
-composer require musonza/chat
+composer require Yizen/chat
 ```
 
 Add the service provider to your `config\app.php` the providers array
 
 ```
-Musonza\Chat\ChatServiceProvider::class
+Yizen\Chat\ChatServiceProvider::class
 ```
 
 Add the Facade to your aliases:
 
 ```
-'Chat' => Musonza\Chat\Facades\ChatFacade::class to your `config\app.php`
+'Chat' => Yizen\Chat\Facades\ChatFacade::class to your `config\app.php`
 ```
 
 The class is bound to the ioC as chat
@@ -64,7 +64,7 @@ Publish the assets:
 php artisan vendor:publish
 ```
 
-This will publish database migrations and a configuration file `musonza_chat.php` in the Laravel config folder.
+This will publish database migrations and a configuration file `Yizen_chat.php` in the Laravel config folder.
 
 ## Configuration
 
@@ -76,7 +76,7 @@ This will publish database migrations and a configuration file `musonza_chat.php
      * This will allow you to broadcast an event when a message is sent
      * Example:
      * Channel: private-mc-chat-conversation.2,
-     * Event: Musonza\Chat\Messages\MessageWasSent
+     * Event: Yizen\Chat\Messages\MessageWasSent
      */
     'broadcasts'            => false,
 ];
@@ -92,7 +92,7 @@ php artisan migrate
 
 By default the package assumes you have a User model in the App namespace.
 
-However, you can update the user model in `musonza_chat.php` published in the `config` folder.
+However, you can update the user model in `Yizen_chat.php` published in the `config` folder.
 
 #### Creating a conversation
 ```php

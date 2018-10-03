@@ -1,8 +1,8 @@
 <?php
 
-namespace Musonza\Chat\Messages;
+namespace Yizen\Chat\Messages;
 
-use Musonza\Chat\Models\Conversation;
+use Yizen\Chat\Models\Conversation;
 
 class SendMessageCommand
 {

@@ -1,15 +1,15 @@
 <?php
 
-namespace Musonza\Chat\Models;
+namespace Yizen\Chat\Models;
 
-use Musonza\Chat\Chat;
-use Musonza\Chat\BaseModel;
-use Musonza\Chat\Models\Message;
-use Musonza\Chat\Models\MessageNotification;
+use Yizen\Chat\Chat;
+use Yizen\Chat\BaseModel;
+use Yizen\Chat\Models\Message;
+use Yizen\Chat\Models\MessageNotification;
 
 class Conversation extends BaseModel
 {
-    protected $table = 'mc_conversations';
+    protected $table = 'conversations';
     protected $fillable = ['data'];
     protected $casts = [
         'data' => 'array',
@@ -22,7 +22,7 @@ class Conversation extends BaseModel
      */
     public function users()
     {
-        return $this->belongsToMany(Chat::userModel(), 'mc_conversation_user')->withTimestamps();
+        return $this->belongsToMany(Chat::userModel(), 'conversation_user')->withTimestamps();
     }
 
     /**
@@ -32,7 +32,7 @@ class Conversation extends BaseModel
      */
     public function last_message()
     {
-        return $this->hasOne(Message::class)->orderBy('mc_messages.id', 'desc')->with('sender');
+        return $this->hasOne(Message::class)->orderBy('messages.id', 'desc')->with('sender');
     }
 
     /**
@@ -160,10 +160,10 @@ class Conversation extends BaseModel
     {
         $userId = is_object($user) ? $user->id : $user;
 
-        return $this->join('mc_conversation_user', 'mc_conversation_user.conversation_id', '=', 'mc_conversations.id')
-            ->where('mc_conversation_user.user_id', $userId)
+        return $this->join('conversation_user', 'conversation_user.conversation_id', '=', 'conversations.id')
+            ->where('conversation_user.user_id', $userId)
             ->where('private', true)
-            ->pluck('mc_conversations.id');
+            ->pluck('conversations.id');
     }
 
     /**
@@ -238,18 +238,18 @@ class Conversation extends BaseModel
     private function getConversationMessages($user, $paginationParams, $deleted)
     {
         $messages = $this->messages()
-            ->join('mc_message_notification', 'mc_message_notification.message_id', '=', 'mc_messages.id')
-            ->where('mc_message_notification.user_id', $user->id);
-        $messages = $deleted ? $messages->whereNotNull('mc_message_notification.deleted_at') : $messages->whereNull('mc_message_notification.deleted_at');
-        $messages = $messages->orderBy('mc_messages.id', $paginationParams['sorting'])
+            ->join('message_notification', 'message_notification.message_id', '=', 'messages.id')
+            ->where('message_notification.user_id', $user->id);
+        $messages = $deleted ? $messages->whereNotNull('message_notification.deleted_at') : $messages->whereNull('message_notification.deleted_at');
+        $messages = $messages->orderBy('messages.id', $paginationParams['sorting'])
             ->paginate(
                 $paginationParams['perPage'],
                 [
-                    'mc_message_notification.updated_at as read_at',
-                    'mc_message_notification.deleted_at as deleted_at',
-                    'mc_message_notification.user_id',
-                    'mc_message_notification.id as notification_id',
-                    'mc_messages.*',
+                    'message_notification.updated_at as read_at',
+                    'message_notification.deleted_at as deleted_at',
+                    'message_notification.user_id',
+                    'message_notification.id as notification_id',
+                    'messages.*',
                 ],
                 $paginationParams['pageName'],
                 $paginationParams['page']
@@ -260,16 +260,16 @@ class Conversation extends BaseModel
 
     private function getConversationsList($user, $perPage, $page, $pageName)
     {
-        return $this->join('mc_conversation_user', 'mc_conversation_user.conversation_id', '=', 'mc_conversations.id')
+        return $this->join('conversation_user', 'conversation_user.conversation_id', '=', 'conversations.id')
             ->with([
                 'last_message' => function ($query) {
-                    $query->join('mc_message_notification', 'mc_message_notification.message_id', '=', 'mc_messages.id')
-                        ->select('mc_message_notification.*', 'mc_messages.*');
+                    $query->join('message_notification', 'message_notification.message_id', '=', 'messages.id')
+                        ->select('message_notification.*', 'messages.*');
                 },
-            ])->where('mc_conversation_user.user_id', $user->id)
-            ->orderBy('mc_conversations.updated_at', 'DESC')
-            ->distinct('mc_conversations.id')
-            ->paginate($perPage, ['mc_conversations.*'], $pageName, $page);
+            ])->where('conversation_user.user_id', $user->id)
+            ->orderBy('conversations.updated_at', 'DESC')
+            ->distinct('conversations.id')
+            ->paginate($perPage, ['conversations.*'], $pageName, $page);
     }
 
     private function notifications($user, $readAll)

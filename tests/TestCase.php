@@ -1,11 +1,11 @@
 <?php
 
-namespace Musonza\Chat\Tests;
+namespace Yizen\Chat\Tests;
 
 require __DIR__.'/../database/migrations/create_chat_tables.php';
 
 use CreateChatTables;
-use Musonza\Chat\User;
+use Yizen\Chat\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -77,22 +77,22 @@ class TestCase extends \Orchestra\Testbench\TestCase
         //     'prefix' => '',
         // ]);
 
-        $app['config']->set('musonza_chat.user_model', 'Musonza\Chat\User');
-        $app['config']->set('musonza_chat.broadcasts', false);
+        $app['config']->set('Yizen_chat.user_model', 'Yizen\Chat\User');
+        $app['config']->set('Yizen_chat.broadcasts', false);
     }
 
     protected function getPackageProviders($app)
     {
         return [
             \Orchestra\Database\ConsoleServiceProvider::class,
-            \Musonza\Chat\ChatServiceProvider::class,
+            \Yizen\Chat\ChatServiceProvider::class,
         ];
     }
 
     protected function getPackageAliases($app)
     {
         return [
-            'Chat' => \Musonza\Chat\Facades\ChatFacade::class,
+            'Chat' => \Yizen\Chat\Facades\ChatFacade::class,
         ];
     }
 

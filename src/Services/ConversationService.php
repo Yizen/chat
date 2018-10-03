@@ -1,11 +1,11 @@
 <?php
 
-namespace Musonza\Chat\Services;
+namespace Yizen\Chat\Services;
 
-use Musonza\Chat\Models\Conversation;
-use Musonza\Chat\Models\Message;
-use Musonza\Chat\Traits\Paginates;
-use Musonza\Chat\Traits\SetsParticipants;
+use Yizen\Chat\Models\Conversation;
+use Yizen\Chat\Models\Message;
+use Yizen\Chat\Traits\Paginates;
+use Yizen\Chat\Traits\SetsParticipants;
 
 class ConversationService
 {

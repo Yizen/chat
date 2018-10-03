@@ -1,6 +1,6 @@
 <?php
 
-namespace Musonza\Chat\Traits;
+namespace Yizen\Chat\Traits;
 
 trait Paginates
 {

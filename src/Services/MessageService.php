@@ -1,11 +1,11 @@
 <?php
 
-namespace Musonza\Chat\Services;
+namespace Yizen\Chat\Services;
 
-use Musonza\Chat\Commanding\CommandBus;
-use Musonza\Chat\Messages\SendMessageCommand;
-use Musonza\Chat\Models\Message;
-use Musonza\Chat\Traits\SetsParticipants;
+use Yizen\Chat\Commanding\CommandBus;
+use Yizen\Chat\Messages\SendMessageCommand;
+use Yizen\Chat\Models\Message;
+use Yizen\Chat\Traits\SetsParticipants;
 
 class MessageService
 {

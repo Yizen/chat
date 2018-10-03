@@ -1,10 +1,10 @@
 <?php
 
-namespace Musonza\Chat\Messages;
+namespace Yizen\Chat\Messages;
 
-use Musonza\Chat\Commanding\CommandHandler;
-use Musonza\Chat\Eventing\EventDispatcher;
-use Musonza\Chat\Models\Message;
+use Yizen\Chat\Commanding\CommandHandler;
+use Yizen\Chat\Eventing\EventDispatcher;
+use Yizen\Chat\Models\Message;
 
 class SendMessageCommandHandler implements CommandHandler
 {

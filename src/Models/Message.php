@@ -1,20 +1,20 @@
 <?php
 
-namespace Musonza\Chat\Models;
+namespace Yizen\Chat\Models;
 
-use Musonza\Chat\BaseModel;
-use Musonza\Chat\Chat;
-use Musonza\Chat\Eventing\EventGenerator;
-use Musonza\Chat\Eventing\MessageWasSent;
-use Musonza\Chat\Models\Conversation;
-use Musonza\Chat\Models\MessageNotification;
+use Yizen\Chat\BaseModel;
+use Yizen\Chat\Chat;
+use Yizen\Chat\Eventing\EventGenerator;
+use Yizen\Chat\Eventing\MessageWasSent;
+use Yizen\Chat\Models\Conversation;
+use Yizen\Chat\Models\MessageNotification;
 
 class Message extends BaseModel
 {
     use EventGenerator;
 
     protected $fillable = ['body', 'user_id', 'type'];
-    protected $table = 'mc_messages';
+    protected $table = 'messages';
     /**
      * All of the relationships to be touched.
      *
@@ -97,7 +97,7 @@ class Message extends BaseModel
     {
         return MessageNotification::where('user_id', $user->id)
             ->where('message_id', $this->id)
-            ->select(['mc_message_notification.*', 'mc_message_notification.updated_at as read_at'])
+            ->select(['message_notification.*', 'message_notification.updated_at as read_at'])
             ->first();
     }
 

@@ -1,5 +1,5 @@
 {
-    "name": "musonza/chat",
+    "name": "Yizen/chat",
     "description": "Chat Package for Laravel 5.4 and up",
     "type": "library",
     "keywords": [
@@ -21,20 +21,20 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Tinashe Musonza",
-            "email": "tashtin263@gmail.com",
+            "name": "Yizen",
+            "email": "ogrenet@gmail.com",
             "role": "Developer"
         }
     ],
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Musonza\\Chat\\": "src/"
+            "Yizen\\Chat\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Musonza\\Chat\\Tests\\": "tests"
+            "Yizen\\Chat\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -43,7 +43,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Musonza\\Chat\\ChatServiceProvider"
+                "Yizen\\Chat\\ChatServiceProvider"
             ]
         }
     }

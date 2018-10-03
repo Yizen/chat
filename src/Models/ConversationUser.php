@@ -1,12 +1,12 @@
 <?php
 
-namespace Musonza\Chat\Models;
+namespace Yizen\Chat\Models;
 
-use Musonza\Chat\BaseModel;
+use Yizen\Chat\BaseModel;
 
 class ConversationUser extends BaseModel
 {
-    protected $table = 'mc_conversation_user';
+    protected $table = 'conversation_user';
 
     /**
      * Conversation.

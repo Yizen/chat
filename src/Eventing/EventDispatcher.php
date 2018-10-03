@@ -1,9 +1,9 @@
 <?php
 
-namespace Musonza\Chat\Eventing;
+namespace Yizen\Chat\Eventing;
 
 use Illuminate\Events\Dispatcher;
-use Musonza\Chat\Chat;
+use Yizen\Chat\Chat;
 
 class EventDispatcher
 {
