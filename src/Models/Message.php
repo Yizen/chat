@@ -5,7 +5,6 @@ namespace Yizen\Chat\Models;
 use Yizen\Chat\BaseModel;
 use Yizen\Chat\Chat;
 use Yizen\Chat\Eventing\EventGenerator;
-use Yizen\Chat\Eventing\MessageWasSent;
 use Yizen\Chat\Models\Conversation;
 use Yizen\Chat\Models\MessageNotification;
 
@@ -66,7 +65,9 @@ class Message extends BaseModel
             'type' => $type,
         ]);
 
-        $this->raise(new MessageWasSent($message));
+        $messageWasSent = Chat::sentMessageEvent();
+        $message->load('sender');
+        $this->raise(new $messageWasSent($message));
 
         return $message;
     }

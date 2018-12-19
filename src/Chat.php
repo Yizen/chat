@@ -109,4 +109,9 @@ class Chat
     {
         return config('chat.broadcasts');
     }
+
+    public static function sentMessageEvent()
+    {
+        return config('chat.sent_message_event');
+    }
 }

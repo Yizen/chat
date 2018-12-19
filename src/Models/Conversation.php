@@ -4,8 +4,6 @@ namespace Yizen\Chat\Models;
 
 use Yizen\Chat\Chat;
 use Yizen\Chat\BaseModel;
-use Yizen\Chat\Models\Message;
-use Yizen\Chat\Models\MessageNotification;
 
 class Conversation extends BaseModel
 {
@@ -22,7 +20,7 @@ class Conversation extends BaseModel
      */
     public function users()
     {
-        return $this->belongsToMany(Chat::userModel(), 'conversation_user')->withTimestamps();
+        return $this->belongsToMany(Chat::userModel(), 'conversation_user', 'conversation_id', 'user_id')->withTimestamps();
     }
 
     /**
@@ -48,9 +46,9 @@ class Conversation extends BaseModel
     /**
      * Get messages for a conversation.
      *
-     * @param User   $user
-     * @param array    $paginationParams
-     * @param boolean $deleted
+     * @param User  $user
+     * @param array $paginationParams
+     * @param bool  $deleted
      *
      * @return Message
      */
@@ -170,6 +168,7 @@ class Conversation extends BaseModel
      * Get unread notifications.
      *
      * @param User $user
+     *
      * @return void
      */
     public function unReadNotifications($user)
