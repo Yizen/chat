@@ -30,11 +30,13 @@ class CreateChatTables extends Migration
 
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
 
             $table->foreign('conversation_id')
                 ->references('id')
-                ->on('conversations');
+                ->on('conversations')
+                ->onDelete('cascade');
         });
 
         Schema::create('conversation_user', function (Blueprint $table) {
