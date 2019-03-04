@@ -16,4 +16,9 @@ return [
      * See Musonza\Chat\Eventing\MessageWasSent if you want to customize.
      */
     'sent_message_event' => 'Yizen\Chat\Eventing\MessageWasSent',
+
+    /**
+     * Automatically convert conversations with more than two users to public
+     */
+    'make_three_or_more_users_public' => true,
 ];

@@ -114,4 +114,9 @@ class Chat
     {
         return config('chat.sent_message_event');
     }
+
+    public static function makeThreeOrMoreUsersPublic()
+    {
+        return config('chat.make_three_or_more_users_public', true);
+    }
 }

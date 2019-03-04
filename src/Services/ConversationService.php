@@ -11,6 +11,8 @@ class ConversationService
 {
     use SetsParticipants, Paginates;
 
+    protected $isPrivate = null;
+
     public function __construct(Conversation $conversation)
     {
         $this->conversation = $conversation;
@@ -104,7 +106,16 @@ class ConversationService
      */
     public function get()
     {
-        return $this->conversation->getList($this->user, $this->perPage, $this->page, $pageName = 'page');
+        if (is_null($this->isPrivate)) {
+            return $this->conversation->getList($this->user, $this->perPage, $this->page, $pageName = 'page');
+        }
+
+        return $this->conversation->getUserConversations($this->user, [
+            'perPage' => $this->perPage,
+            'page' => $this->page,
+            'pageName' => 'page',
+            'isPrivate' => $this->isPrivate
+        ]);
     }
 
     /**
@@ -154,5 +165,18 @@ class ConversationService
     private function getConversationsInCommon($conversation1, $conversation2)
     {
         return array_values(array_intersect($conversation1, $conversation2));
+    }
+
+    /**
+     * Sets the conversation type to query for, public or private.
+     *
+     * @param boolean $isPrivate
+     * @return boolean
+     */
+    public function isPrivate($isPrivate = true)
+    {
+        $this->isPrivate = $isPrivate;
+
+        return $this;
     }
 }
