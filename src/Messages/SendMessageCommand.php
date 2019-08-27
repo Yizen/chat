@@ -16,11 +16,12 @@ class SendMessageCommand
      * @param int $senderId The sender identifier
      * @param string $type The message type
      */
-    public function __construct(Conversation $conversation, $body, $senderId, $type = 'text')
+    public function __construct(Conversation $conversation, $body, $senderId, $type = 'text', $filename)
     {
         $this->conversation = $conversation;
         $this->body = $body;
         $this->type = $type;
         $this->senderId = $senderId;
+        $this->filename = $filename;
     }
 }

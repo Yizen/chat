@@ -12,7 +12,7 @@ class Message extends BaseModel
 {
     use EventGenerator;
 
-    protected $fillable = ['body', 'user_id', 'type'];
+    protected $fillable = ['body', 'user_id', 'type', 'filename'];
     protected $table = 'messages';
     /**
      * All of the relationships to be touched.

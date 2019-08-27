@@ -45,6 +45,20 @@ class MessageService
         return $this;
     }
 
+    /**
+     * Set Message attachement filename.
+     *
+     * @param string type
+     *
+     * @return $this
+     */
+    public function filename(String $filename)
+    {
+        $this->filename = $filename;
+
+        return $this;
+    }
+
     public function getById($id)
     {
         return $this->message->findOrFail($id);
