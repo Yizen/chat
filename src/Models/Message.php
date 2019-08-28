@@ -2,6 +2,7 @@
 
 namespace Yizen\Chat\Models;
 
+use Illuminate\Support\Facades\Storage;
 use Yizen\Chat\BaseModel;
 use Yizen\Chat\Chat;
 use Yizen\Chat\Eventing\EventGenerator;
@@ -14,6 +15,8 @@ class Message extends BaseModel
 
     protected $fillable = ['body', 'user_id', 'type', 'filename'];
     protected $table = 'messages';
+    protected $appends = ['url'];
+
     /**
      * All of the relationships to be touched.
      *
@@ -47,22 +50,34 @@ class Message extends BaseModel
         return $this->belongsTo(Conversation::class, 'conversation_id');
     }
 
+    public function getUrlAttribute()
+    {
+        if ($this->filename) {
+            return Storage::temporaryUrl(
+                $this->body, now()->addHours(24)
+            );
+        } else {
+            return '';
+        }
+    }
+
     /**
      * Adds a message to a conversation.
      *
      * @param Conversation $conversation
-     * @param string       $body
-     * @param int          $userId
-     * @param string       $type
+     * @param string $body
+     * @param int $userId
+     * @param string $type
      *
      * @return Message
      */
-    public function send(Conversation $conversation, $body, $userId, $type = 'text')
+    public function send(Conversation $conversation, $body, $userId, $type = 'text', $filename = '')
     {
         $message = $conversation->messages()->create([
             'body' => $body,
             'user_id' => $userId,
             'type' => $type,
+            'filename' => $filename
         ]);
 
         $messageWasSent = Chat::sentMessageEvent();
@@ -76,7 +91,7 @@ class Message extends BaseModel
      * Deletes a message.
      *
      * @param Message $message
-     * @param User    $user
+     * @param User $user
      *
      * @return
      */
