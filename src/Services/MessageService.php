@@ -123,7 +123,7 @@ class MessageService
             throw new \Exception('Message receiver has not been set');
         }
 
-        $command = new SendMessageCommand($this->to, $this->body, $this->from, $this->type);
+        $command = new SendMessageCommand($this->to, $this->body, $this->from, $this->type, $this->filename());
 
         return $this->commandBus->execute($command);
     }
